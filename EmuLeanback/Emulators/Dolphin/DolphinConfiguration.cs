@@ -62,7 +62,7 @@ namespace EmuLeanback.Emulators.Dolphin
         {
             var configDictionary = new Dictionary<string, string>();
             string readText = FileIO.FileToString(_configFilePath);
-         
+
             string[] configLineSeparator = new string[] { "\r\n" };
 
             var configLines = readText.Split(configLineSeparator, StringSplitOptions.None);
@@ -70,12 +70,27 @@ namespace EmuLeanback.Emulators.Dolphin
             {
                 var configLine = configLines[i];
 
+                if (configLine == string.Empty)
+                {
+                    continue;
+                }
+
                 if (configLine.Split('=').Length > 1)
                 {
                     var key = configLine.Split('=')[0].Trim();
                     var value = configLine.Split('=')[1].Trim();
-                    if (! configDictionary.ContainsKey(key))
-                        configDictionary.Add(key,value);
+                    int k = 0;
+
+                    if (configDictionary.ContainsKey(key))
+                    {
+                        k = 2;
+                        while (configDictionary.ContainsKey(key + "-" + k))
+                            k++;
+
+                    }
+
+                    configDictionary.Add(k == 0 ? key : key + "-" + k, value);
+
                 }
                 else if (configLine != string.Empty)
                 {

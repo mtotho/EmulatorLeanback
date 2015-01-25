@@ -31,25 +31,29 @@ namespace EmuLeanback
         
         private RomLoader _currentLoader;
         private KeyboardHandler _kbHandler;
-
+        private List<ConsoleEmulator> Emus;
         public MainWindow()
         {
+            Emus = new List<ConsoleEmulator>();
 
             InitializeComponent();
             Project64 n64 = new Project64();
+            Dolphin dolphin = new Dolphin();
+            Emus.Add(n64);
+            Emus.Add(dolphin);
 
-            List<string> n64roms =  n64.RomLoader.GetRoms();
+           // List<string> n64roms =  n64.RomLoader.GetRoms();
+            //List<string> dolphinRoms = dolphin.RomLoader.GetRoms();
+          //  n64.RomLoader.LoadRom(n64roms[1]);
 
-            n64.RomLoader.LoadRom(n64roms[1]);
-
-           Dolphin dolphin = new Dolphin();
-
-            List<string> dolphinRoms = dolphin.RomLoader.GetRoms();
+           
+            var emu = Emus[0];
+            emu.RomLoader.LoadRom(emu.RomLoader.GetRoms()[0]);
             //dolphin.RomLoader.LoadRom(dolphinRoms[0]);
-            _currentLoader = dolphin.RomLoader;
+            //currentLoader = dolphin.RomLoader;
 
 
-            //HookManager.KeyDown += dolphin.KBHandler.KeyDown;
+//            HookManager.KeyDown += dolphin.KBHandler.KeyDown;
          
         }
 

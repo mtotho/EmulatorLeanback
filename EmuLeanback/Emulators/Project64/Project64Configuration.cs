@@ -12,7 +12,9 @@ namespace EmuLeanback.Emulators.Project64
     {
       
         private string _configFilePath;
-        private Dictionary<string, string> _configDictionary;
+       // private Dictionary<string, string> _configDictionary;
+
+        private Dictionary<string, Dictionary<string, string>> _configDictionary;
 
         public PluginConfiguration Plugins;
         public DefaultConfiguration Default;
@@ -41,14 +43,17 @@ namespace EmuLeanback.Emulators.Project64
             
         }
 
-        private Dictionary<string, string> loadDictionary()
+        //Load Key/value string dictionary of all the settings available
+        private Dictionary<string, Dictionary<string, string>> loadDictionary()
         {
-            var configDictionary = new Dictionary<string, string>();
+          //  var configDictionary = new Dictionary<string, string>();
+            Dictionary<string, Dictionary<string, string>> configDictionary = new Dictionary<string, Dictionary<string, string>>();
             string readText = FileIO.FileToString(_configFilePath);
 
             string[] configLineSeparator = new string[] { "\r\n" };
 
             var configLines = readText.Split(configLineSeparator, StringSplitOptions.None);
+            var currentGroup = string.Empty;
             for (int i = 0; i < configLines.Length; i++)
             {
                 var configLine = configLines[i];
@@ -60,24 +65,31 @@ namespace EmuLeanback.Emulators.Project64
 
                 if (configLine.Split('=').Length > 1)
                 {
+
                     var key = configLine.Split('=')[0].Trim();
                     var value = configLine.Split('=')[1].Trim();
                     int k = 0;
 
-                    if (configDictionary.ContainsKey(key))
-                    {
-                        k = 2;
-                        while (configDictionary.ContainsKey(key +"-"+ k))
-                            k++;
+                  //  if (configDictionary.ContainsKey(key))
+                 //   {
+                  //      k = 2;
+                    //    while (configDictionary.ContainsKey(key +"-"+ k))
+                     //       k++;
 
+                //    }
+                    if (configDictionary.ContainsKey(currentGroup))
+                    {
+                        configDictionary[currentGroup].Add(key, value);
                     }
-                   
-                    configDictionary.Add(k==0?key: key +"-"+k, value);
+
+                    //configDictionary.Add(k==0?key: key +"-"+k, value);
                         
                 }
                 else if (configLine != string.Empty)
                 {
-                    configDictionary.Add(configLine, "Label");
+                    currentGroup = configLine;
+                    configDictionary.Add(currentGroup, new Dictionary<string, string>());
+                   // configDictionary.Add(configLine, "Label");
                 }
 
             }
@@ -211,25 +223,30 @@ namespace EmuLeanback.Emulators.Project64
         }*/
         public override string ToString()
         {
+            
             string configStr = string.Empty;
+          
             for (int i = 0; i < _configDictionary.Count; i++)
             {
-                var key = _configDictionary.ElementAt(i).Key;
-                var value = _configDictionary.ElementAt(i).Value;
+                var configGroup = _configDictionary.ElementAt(i).Value;
+                var configGroupKey = _configDictionary.ElementAt(i).Key;
 
-                if (value == "Label")
+                if (i > 0)
                 {
-                    if (i > 0)
-                    {
-                        configStr += "\r\n";
-                    }
-
-                    configStr += key + "\r\n";
+                    configStr += "\r\n";
                 }
-                else
+
+                configStr += configGroupKey + "\r\n";
+
+                for (int k = 0; k < configGroup.Count; k++)
                 {
+                    var key = configGroup.ElementAt(k).Key;
+                    var value = configGroup.ElementAt(k).Value;
+
                     configStr += string.Format("{0}={1}\r\n", key, value);
+            
                 }
+
             }
 
             return configStr;
@@ -356,13 +373,26 @@ namespace EmuLeanback.Emulators.Project64
     }
     public class DefaultConfiguration
     {
-        private Dictionary<string, string> _configDictionary;
-        public DefaultConfiguration(Dictionary<string, string> configDictionary) { _configDictionary = configDictionary; }
+        private Dictionary<string, Dictionary<string, string>>_configDictionary;
+     
+        public DefaultConfiguration(Dictionary<string, Dictionary<string, string>> configDictionary){ _configDictionary = configDictionary; }
         public bool AutoFullScreen
         {
-            get { return (_configDictionary["Auto Full Screen"]) == "1" ? true : false; }
-            set { 
-                _configDictionary["Auto Full Screen"] =value?"1":"0"; 
+            get 
+            { //return false if key is not present.. otherwise returnt he value
+                if(!_configDictionary["[default]"].ContainsKey("Auto Full Screen"))
+                    return false;
+                return (_configDictionary["[default]"]["Auto Full Screen"]) == "1" ? true : false; 
+            }
+            set
+            {   //Add setting key and set value if it doesnt exist
+                if (_configDictionary.ContainsKey("[default]")) 
+                {
+                    if (!_configDictionary["[default]"].ContainsKey("Auto Full Screen"))
+                        _configDictionary["[default]"].Add("Auto Full Screen", value ? "1" : "0");
+                    else
+                        _configDictionary["[default]"]["Auto Full Screen"] = value ? "1" : "0"; 
+                }
             }
         }
         public string CurrentLanguage;
