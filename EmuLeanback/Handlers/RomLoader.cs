@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -61,8 +62,10 @@ namespace EmuLeanback.Handlers
             start.CreateNoWindow = false;
 
             Process p = Process.Start(start);
-            
 
+            Thread.Sleep(1000);
+            SetForegroundWindow(p.MainWindowHandle);
+            sendKey(KeyboardHandler.KEY_F8);
             return 0;
         }
 

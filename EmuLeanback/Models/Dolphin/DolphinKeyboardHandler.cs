@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EmuLeanback.Models.Dolphin
@@ -22,6 +23,8 @@ namespace EmuLeanback.Models.Dolphin
 
             if ((int)e.KeyCode == 65) //a
             {
+                _romLoader.sendKey(KEY_F9,true);
+                Thread.Sleep(750);
                 _romLoader.KillAll();
                 //string urlContents = await _currentLoader.sendKey(KEY_ESCAPE, true);
 

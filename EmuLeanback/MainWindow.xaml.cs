@@ -33,7 +33,8 @@ namespace EmuLeanback
 
         public MainWindow()
         {
-          
+
+            InitializeComponent();
             Project64 n64 = new Project64();
 
             List<string> n64roms =  n64.RomLoader.GetRoms();

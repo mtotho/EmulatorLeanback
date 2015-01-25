@@ -15,6 +15,8 @@ namespace EmuLeanback.Handlers
         public const ushort KEY_ESCAPE = 0x1B;
         public const ushort KEY_ENTER = 0x0D;
         public const ushort KEY_SPACE = 0x20;
+        public const ushort KEY_F8 = 0x77;
+        public const ushort KEY_F9 = 0x78;
        
         public KeyboardHandler(RomLoader loader)
         {
