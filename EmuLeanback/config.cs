@@ -22,6 +22,7 @@ namespace EmuLeanback
             public static string EXECUTABLE = @"C:\Emulators\Project64_2.1\Project64.exe";
             public static string ROOT_DIRECTORY = @"C:\Emulators\Project64_2.1\";
             public static string ROM_DIRECTORY = @"C:\roms\n64\";
+            public static string CONFIG_DIRECTORY = @"C:\Emulators\Project64_2.1\Config\";
         }
     }
 }

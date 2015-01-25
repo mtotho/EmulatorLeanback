@@ -1,7 +1,8 @@
-﻿using EmuLeanback.Handlers;
+﻿
+using EmuLeanback.Emulators.Code;
+using EmuLeanback.Emulators.Dolphin;
+using EmuLeanback.Emulators.Project64;
 using EmuLeanback.Helpers;
-using EmuLeanback.Models.Dolphin;
-using EmuLeanback.Models.Project64;
 using Gma.UserActivityMonitor;
 using System;
 using System.Collections.Generic;
@@ -39,16 +40,16 @@ namespace EmuLeanback
 
             List<string> n64roms =  n64.RomLoader.GetRoms();
 
-          // n64.RomLoader.LoadRom(n64roms[1]);
+        //  n64.RomLoader.LoadRom(n64roms[1]);
 
-            Dolphin dolphin = new Dolphin();
+           Dolphin dolphin = new Dolphin();
 
             List<string> dolphinRoms = dolphin.RomLoader.GetRoms();
-             dolphin.RomLoader.LoadRom(dolphinRoms[0]);
-             _currentLoader = dolphin.RomLoader;
+            dolphin.RomLoader.LoadRom(dolphinRoms[0]);
+            _currentLoader = dolphin.RomLoader;
 
 
-             HookManager.KeyDown += dolphin.KBHandler.KeyDown;
+            HookManager.KeyDown += dolphin.KBHandler.KeyDown;
          
         }
 
