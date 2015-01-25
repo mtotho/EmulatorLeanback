@@ -22,7 +22,7 @@ namespace EmuLeanback.Emulators.Project64
             _config = new Project64Configuration(_configFilePath);
 
             //default to full screen
-            _config.Default.AutoFullScreen = "1";
+            _config.Default.AutoFullScreen = true;
             commit();
         }
         public override object getConfig()

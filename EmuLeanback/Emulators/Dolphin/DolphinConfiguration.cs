@@ -125,8 +125,8 @@ namespace EmuLeanback.Emulators.Dolphin
         }
         public int SaveStateSlot8Modifier 
         {
-            get{ return Int32.Parse(_configDictionary["SaveStateSlot8Modifier "]); }
-            set{ _configDictionary["SaveStateSlot8Modifier "] =  value.ToString();}
+            get{ return Int32.Parse(_configDictionary["SaveStateSlot8Modifier"]); }
+            set{ _configDictionary["SaveStateSlot8Modifier"] =  value.ToString();}
         }
 
     }

@@ -40,16 +40,16 @@ namespace EmuLeanback
 
             List<string> n64roms =  n64.RomLoader.GetRoms();
 
-        //  n64.RomLoader.LoadRom(n64roms[1]);
+            n64.RomLoader.LoadRom(n64roms[1]);
 
            Dolphin dolphin = new Dolphin();
 
             List<string> dolphinRoms = dolphin.RomLoader.GetRoms();
-            dolphin.RomLoader.LoadRom(dolphinRoms[0]);
+            //dolphin.RomLoader.LoadRom(dolphinRoms[0]);
             _currentLoader = dolphin.RomLoader;
 
 
-            HookManager.KeyDown += dolphin.KBHandler.KeyDown;
+            //HookManager.KeyDown += dolphin.KBHandler.KeyDown;
          
         }
 

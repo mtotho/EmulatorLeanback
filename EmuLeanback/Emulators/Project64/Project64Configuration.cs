@@ -12,6 +12,8 @@ namespace EmuLeanback.Emulators.Project64
     {
       
         private string _configFilePath;
+        private Dictionary<string, string> _configDictionary;
+
         public PluginConfiguration Plugins;
         public DefaultConfiguration Default;
         public RomBrowserConfiguration RomBrowser;
@@ -20,21 +22,70 @@ namespace EmuLeanback.Emulators.Project64
         public List<string> RecentFiles;
         public Direct3D8Configuration Direct3D8;
 
+
+
         public Project64Configuration(string configPath)
         {
+          
             _configFilePath = configPath;
+            _configDictionary = loadDictionary();
             Plugins = new PluginConfiguration();
-            Default = new DefaultConfiguration();
+            Default = new DefaultConfiguration(_configDictionary);
             RomBrowser = new RomBrowserConfiguration();
             MainWindow = new MainWindowConfiguration();
             Controllers = new List<DirectInputControllerConfiguration>();
             RecentFiles = new List<string>();
             Direct3D8 = new Direct3D8Configuration();
 
-            loadDictionary();
+            //loadDictionary2();
+            
         }
 
-        private void loadDictionary()
+        private Dictionary<string, string> loadDictionary()
+        {
+            var configDictionary = new Dictionary<string, string>();
+            string readText = FileIO.FileToString(_configFilePath);
+
+            string[] configLineSeparator = new string[] { "\r\n" };
+
+            var configLines = readText.Split(configLineSeparator, StringSplitOptions.None);
+            for (int i = 0; i < configLines.Length; i++)
+            {
+                var configLine = configLines[i];
+
+                if (configLine == string.Empty)
+                {
+                    continue;
+                }
+
+                if (configLine.Split('=').Length > 1)
+                {
+                    var key = configLine.Split('=')[0].Trim();
+                    var value = configLine.Split('=')[1].Trim();
+                    int k = 0;
+
+                    if (configDictionary.ContainsKey(key))
+                    {
+                        k = 2;
+                        while (configDictionary.ContainsKey(key +"-"+ k))
+                            k++;
+
+                    }
+                   
+                    configDictionary.Add(k==0?key: key +"-"+k, value);
+                        
+                }
+                else if (configLine != string.Empty)
+                {
+                    configDictionary.Add(configLine, "Label");
+                }
+
+            }
+            return configDictionary;
+        }
+
+        /*
+        private void loadDictionary2()
         {
             //Project64Configuration pj64cfg = new Project64Configuration();
 
@@ -157,8 +208,33 @@ namespace EmuLeanback.Emulators.Project64
 
             
 
-        }
+        }*/
+        public override string ToString()
+        {
+            string configStr = string.Empty;
+            for (int i = 0; i < _configDictionary.Count; i++)
+            {
+                var key = _configDictionary.ElementAt(i).Key;
+                var value = _configDictionary.ElementAt(i).Value;
 
+                if (value == "Label")
+                {
+                    if (i > 0)
+                    {
+                        configStr += "\r\n";
+                    }
+
+                    configStr += key + "\r\n";
+                }
+                else
+                {
+                    configStr += string.Format("{0}={1}\r\n", key, value);
+                }
+            }
+
+            return configStr;
+        }
+        /*
         public override string ToString()
         {
             string output = "";
@@ -254,7 +330,7 @@ namespace EmuLeanback.Emulators.Project64
 
             return output;
         }
-      
+     */ 
     }
 
     public class Direct3D8Configuration
@@ -280,7 +356,15 @@ namespace EmuLeanback.Emulators.Project64
     }
     public class DefaultConfiguration
     {
-        public string AutoFullScreen;
+        private Dictionary<string, string> _configDictionary;
+        public DefaultConfiguration(Dictionary<string, string> configDictionary) { _configDictionary = configDictionary; }
+        public bool AutoFullScreen
+        {
+            get { return (_configDictionary["Auto Full Screen"]) == "1" ? true : false; }
+            set { 
+                _configDictionary["Auto Full Screen"] =value?"1":"0"; 
+            }
+        }
         public string CurrentLanguage;
     }
 
