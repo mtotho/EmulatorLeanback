@@ -1,4 +1,4 @@
-﻿using EmuLeanback.Emulators.Code;
+﻿using EmuLeanback.ConsoleEmulator.Code;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,17 +9,17 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EmuLeanback.Emulators.Project64
+namespace EmuLeanback.ConsoleEmulator.Project64
 {
     public class Project64RomLoader : RomLoader
     {
-       
-  
 
-        public Project64RomLoader()
+
+
+        public Project64RomLoader(ConsoleConfig FileDirectories)
         {
-            _romDirectory = config.N64.ROM_DIRECTORY;
-            _executable = config.N64.EXECUTABLE;
+            _romDirectory = FileDirectories.ROM_DIRECTORY;
+            _executable = FileDirectories.EXECUTABLE;
             _processName = "Project64";
         }
 

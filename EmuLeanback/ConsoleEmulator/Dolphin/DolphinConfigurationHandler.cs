@@ -1,20 +1,20 @@
-﻿using EmuLeanback.Emulators.Code;
-using EmuLeanback.Helpers;
+﻿using EmuLeanback.ConsoleEmulator.Code;
+using EmuLeanback.ConsoleEmulator.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmuLeanback.Emulators.Dolphin
+namespace EmuLeanback.ConsoleEmulator.Dolphin
 {
     public class DolphinConfigurationHandler : ConfigurationHandler
     {
         private DolphinConfiguration _config;
 
-        public DolphinConfigurationHandler(ConsoleEmulator emu)
+        public DolphinConfigurationHandler(GameConsoleEmulator emu)
         {
-            _configFilePath = config.GAMECUBE.USER_DIRECTORY + "Config\\Dolphin.ini";
+            _configFilePath = emu.DirectoryConfiguration.USER_DIRECTORY+ "Config\\Dolphin.ini";
             _emu = emu;
             _config = new DolphinConfiguration(_configFilePath);
 

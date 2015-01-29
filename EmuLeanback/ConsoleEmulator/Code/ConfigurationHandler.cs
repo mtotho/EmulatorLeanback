@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmuLeanback.Emulators.Code
+namespace EmuLeanback.ConsoleEmulator.Code
 {
     public abstract class ConfigurationHandler
     {
 
-        private object _config;
-        protected static string _configFilePath;
-        protected ConsoleEmulator _emu;
+        protected object _config;
+        protected string _configFilePath;
+        protected GameConsoleEmulator _emu;
 
+        //Kill all rom processes. Save config to file
         public int commit()
         {
             _emu.RomLoader.KillAll();
@@ -23,7 +24,7 @@ namespace EmuLeanback.Emulators.Code
 
         public virtual object getConfig()
         {
-            return _config;
+            return new NotImplementedException();
         }
        
     }

@@ -1,12 +1,12 @@
-﻿using EmuLeanback.Emulators.Code;
-using EmuLeanback.Helpers;
+﻿using EmuLeanback.ConsoleEmulator.Code;
+using EmuLeanback.ConsoleEmulator.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmuLeanback.Emulators.Project64
+namespace EmuLeanback.ConsoleEmulator.Project64
 {
     public class Project64Configuration : EmulatorConfiguration
     {

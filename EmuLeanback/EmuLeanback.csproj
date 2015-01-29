@@ -66,31 +66,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="config.cs" />
-    <Compile Include="Emulators\Code\ConfigurationHandler.cs" />
-    <Compile Include="Emulators\Code\IGameConsoleConfiguration.cs" />
-    <Compile Include="Handlers\CommandLineHandler.cs" />
-    <Compile Include="Emulators\Dolphin\DolphinConfigurationHandler.cs" />
-    <Compile Include="Emulators\Dolphin\DolphinRomLoader.cs" />
-    <Compile Include="Emulators\Code\KeyboardHandler.cs" />
-    <Compile Include="Emulators\Project64\Project64ConfigurationHandler.cs" />
-    <Compile Include="Emulators\Project64\Project64RomLoader.cs" />
-    <Compile Include="Emulators\Code\RomLoader.cs" />
-    <Compile Include="Helpers\ApplicationMessaging.cs" />
-    <Compile Include="Helpers\FileIO.cs" />
+    <Compile Include="ConsoleEmulator\Code\ConfigurationHandler.cs" />
+    <Compile Include="ConsoleEmulator\Code\ConsoleConfig.cs" />
+    <Compile Include="ConsoleEmulator\Code\IGameConsoleConfiguration.cs" />
+    <Compile Include="ConsoleEmulator\Handlers\CommandLineHandler.cs" />
+    <Compile Include="ConsoleEmulator\Dolphin\DolphinConfigurationHandler.cs" />
+    <Compile Include="ConsoleEmulator\Dolphin\DolphinRomLoader.cs" />
+    <Compile Include="ConsoleEmulator\Code\KeyboardHandler.cs" />
+    <Compile Include="ConsoleEmulator\Project64\Project64ConfigurationHandler.cs" />
+    <Compile Include="ConsoleEmulator\Project64\Project64RomLoader.cs" />
+    <Compile Include="ConsoleEmulator\Code\RomLoader.cs" />
+    <Compile Include="ConsoleEmulator\Helpers\ApplicationMessaging.cs" />
+    <Compile Include="ConsoleEmulator\Helpers\FileIO.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Emulators\Dolphin\Dolphin.cs" />
-    <Compile Include="Emulators\Dolphin\DolphinConfiguration.cs" />
-    <Compile Include="Emulators\Dolphin\DolphinKeyboardHandler.cs" />
-    <Compile Include="Emulators\Code\EmulatorConfiguration.cs" />
-    <Compile Include="Emulators\Code\ConsoleEmulator.cs" />
-    <Compile Include="Emulators\Project64\Project64.cs" />
-    <Compile Include="Emulators\Project64\Project64Configuration.cs" />
+    <Compile Include="ConsoleEmulator\Dolphin\Dolphin.cs" />
+    <Compile Include="ConsoleEmulator\Dolphin\DolphinConfiguration.cs" />
+    <Compile Include="ConsoleEmulator\Dolphin\DolphinKeyboardHandler.cs" />
+    <Compile Include="ConsoleEmulator\Code\EmulatorConfiguration.cs" />
+    <Compile Include="ConsoleEmulator\Code\GameConsoleEmulator.cs" />
+    <Compile Include="ConsoleEmulator\Project64\Project64.cs" />
+    <Compile Include="ConsoleEmulator\Project64\Project64Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

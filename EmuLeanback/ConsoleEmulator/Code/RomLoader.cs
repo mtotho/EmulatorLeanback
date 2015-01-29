@@ -1,4 +1,4 @@
-﻿using EmuLeanback.Helpers;
+﻿using EmuLeanback.ConsoleEmulator.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace EmuLeanback.Emulators.Code
+namespace EmuLeanback.ConsoleEmulator.Code
 {
     public abstract class RomLoader
     {

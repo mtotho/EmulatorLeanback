@@ -5,21 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using EmuLeanback.Helpers;
-using EmuLeanback.Emulators.Code;
+using EmuLeanback.ConsoleEmulator.Helpers;
+using EmuLeanback.ConsoleEmulator.Code;
 using System.Threading;
 
-namespace EmuLeanback.Emulators.Dolphin
+namespace EmuLeanback.ConsoleEmulator.Dolphin
 {
     public class DolphinRomLoader : RomLoader
     {
 
         private const uint VK_ESCAPE = 0x1B;
 
-        public DolphinRomLoader()
+        public DolphinRomLoader(ConsoleConfig FileDirectories)
         {
-            _romDirectory = config.GAMECUBE.ROM_DIRECTORY;
-            _executable = config.GAMECUBE.EXECUTABLE;
+            _romDirectory = FileDirectories.ROM_DIRECTORY;
+            _executable = FileDirectories.EXECUTABLE;
             _processName = "Dolphin";
         }
 

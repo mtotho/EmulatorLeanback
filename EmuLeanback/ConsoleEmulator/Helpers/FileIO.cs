@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmuLeanback.Helpers
+namespace EmuLeanback.ConsoleEmulator.Helpers
 {
     public static class FileIO
     {

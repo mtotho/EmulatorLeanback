@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace EmuLeanback.Emulators.Code
+namespace EmuLeanback.ConsoleEmulator.Code
 {
     public class KeyboardHandler
     {

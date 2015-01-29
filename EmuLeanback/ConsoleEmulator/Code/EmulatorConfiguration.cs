@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmuLeanback.Emulators.Code
+namespace EmuLeanback.ConsoleEmulator.Code
 {
-    public interface IGameConsoleConfiguration
+    public abstract class EmulatorConfiguration
     {
-
     }
 }

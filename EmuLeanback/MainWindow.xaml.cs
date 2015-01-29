@@ -1,8 +1,8 @@
 ﻿
-using EmuLeanback.Emulators.Code;
-using EmuLeanback.Emulators.Dolphin;
-using EmuLeanback.Emulators.Project64;
-using EmuLeanback.Helpers;
+using EmuLeanback.ConsoleEmulator.Code;
+using EmuLeanback.ConsoleEmulator.Dolphin;
+using EmuLeanback.ConsoleEmulator.Project64;
+using EmuLeanback.ConsoleEmulator.Helpers;
 using Gma.UserActivityMonitor;
 using System;
 using System.Collections.Generic;
@@ -31,14 +31,25 @@ namespace EmuLeanback
         
         private RomLoader _currentLoader;
         private KeyboardHandler _kbHandler;
-        private List<ConsoleEmulator> Emus;
+        private List<GameConsoleEmulator> Emus;
         public MainWindow()
         {
-            Emus = new List<ConsoleEmulator>();
+            Emus = new List<GameConsoleEmulator>();
 
             InitializeComponent();
-            Project64 n64 = new Project64();
-            Dolphin dolphin = new Dolphin();
+            Project64 n64 = new Project64(new ConsoleConfig(){
+                        EXECUTABLE = @"C:\Emulators\Project64_2.1\Project64.exe",
+                        ROOT_DIRECTORY =  @"C:\Emulators\Project64_2.1\",
+                        ROM_DIRECTORY = @"C:\roms\n64\",
+                        CONFIG_DIRECTORY =@"C:\Emulators\Project64_2.1\Config\"
+                    });
+
+            Dolphin dolphin = new Dolphin(new ConsoleConfig(){
+                        EXECUTABLE = @"C:\Emulators\Dolphin-x64\Dolphin.exe",
+                        ROOT_DIRECTORY = @"C:\Emulators\Dolphin-x64\",
+                        ROM_DIRECTORY = @"C:\roms\gc\",
+                        USER_DIRECTORY = @"C:\Users\Michael\Documents\Dolphin Emulator\"
+                    });
             Emus.Add(n64);
             Emus.Add(dolphin);
 
@@ -47,7 +58,7 @@ namespace EmuLeanback
           //  n64.RomLoader.LoadRom(n64roms[1]);
 
            
-            var emu = Emus[0];
+            var emu = Emus[1];
             emu.RomLoader.LoadRom(emu.RomLoader.GetRoms()[0]);
             //dolphin.RomLoader.LoadRom(dolphinRoms[0]);
             //currentLoader = dolphin.RomLoader;

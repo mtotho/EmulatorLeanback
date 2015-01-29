@@ -1,5 +1,5 @@
 ﻿
-using EmuLeanback.Emulators.Code;
+using EmuLeanback.ConsoleEmulator.Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EmuLeanback.Emulators.Dolphin
+namespace EmuLeanback.ConsoleEmulator.Dolphin
 {
     public class DolphinKeyboardHandler : KeyboardHandler
     {
