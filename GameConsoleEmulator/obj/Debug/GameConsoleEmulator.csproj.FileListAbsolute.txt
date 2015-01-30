@@ -1,8 +1,0 @@
-C:\Users\Michael\documents\visual studio 2013\Projects\EmuLeanback\GameConsoleEmulator\bin\Debug\GameConsoleEmulator.exe.config
-C:\Users\Michael\documents\visual studio 2013\Projects\EmuLeanback\GameConsoleEmulator\bin\Debug\GameConsoleEmulator.exe
-C:\Users\Michael\documents\visual studio 2013\Projects\EmuLeanback\GameConsoleEmulator\bin\Debug\GameConsoleEmulator.pdb
-C:\Users\Michael\documents\visual studio 2013\Projects\EmuLeanback\GameConsoleEmulator\bin\Debug\Gma.UserActivityMonitor.dll
-C:\Users\Michael\documents\visual studio 2013\Projects\EmuLeanback\GameConsoleEmulator\bin\Debug\Gma.UserActivityMonitor.pdb
-C:\Users\Michael\documents\visual studio 2013\Projects\EmuLeanback\GameConsoleEmulator\obj\Debug\GameConsoleEmulator.csprojResolveAssemblyReference.cache
-C:\Users\Michael\documents\visual studio 2013\Projects\EmuLeanback\GameConsoleEmulator\obj\Debug\GameConsoleEmulator.exe
-C:\Users\Michael\documents\visual studio 2013\Projects\EmuLeanback\GameConsoleEmulator\obj\Debug\GameConsoleEmulator.pdb
