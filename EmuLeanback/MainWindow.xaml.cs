@@ -1,9 +1,5 @@
 ﻿
-using EmuLeanback.ConsoleEmulator.Code;
-using EmuLeanback.ConsoleEmulator.Dolphin;
-using EmuLeanback.ConsoleEmulator.Project64;
-using EmuLeanback.ConsoleEmulator.Helpers;
-using Gma.UserActivityMonitor;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +16,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GameConsoleEmulator.Code;
+using GameConsoleEmulator.Emulators.Dolphin;
+using GameConsoleEmulator.Emulators.Project64;
 
 namespace EmuLeanback
 {
@@ -31,10 +30,10 @@ namespace EmuLeanback
         
         private RomLoader _currentLoader;
         private KeyboardHandler _kbHandler;
-        private List<GameConsoleEmulator> Emus;
+        private List<GameConsole> Emus;
         public MainWindow()
         {
-            Emus = new List<GameConsoleEmulator>();
+            Emus = new List<GameConsole>();
 
             InitializeComponent();
             Project64 n64 = new Project64(new ConsoleConfig(){
@@ -63,8 +62,7 @@ namespace EmuLeanback
             //dolphin.RomLoader.LoadRom(dolphinRoms[0]);
             //currentLoader = dolphin.RomLoader;
 
-
-//            HookManager.KeyDown += dolphin.KBHandler.KeyDown;
+             
          
         }
 
